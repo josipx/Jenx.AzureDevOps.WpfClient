@@ -1,15 +1,18 @@
-# Jenx AzureDevOps Client
+# Jenx Azure DevOps Client
 
-![app image](docs/readme-artifacts/app-screen.png "App")
+![app image](docs/readme-artifacts/projectsView.png "Projects")
 
-## The purpose of this repository
+## The purpose of this repository.
+* Playing around with .NET Core 3.0 (Preview) and WPF. 
+	* .NET Core 3.0 is the first version of .Net Core which support WPF desktop apps. So, for me this was interesting how this plays along (Wpf and .NET Core).
+	* I like .NET Core support for machine-global and application-local deployment.
+	* Performance inprovements.
+	
+* For this puprose I created simple Wpf Azure DevOps Client to make some proof-of-concepts.
 
-* Playing around with .NET Core 3.0 (Preview) and WPF.
-* Build a simple Wpf Azure DevOps Client to make some proof-of-concepts.
 * Playing around with just released Visual Studio 2019.
 
-## App key features
-
+## App key features.
 * Integrated Prism Library to create loosely coupled, maintainable, and testable application. [[https://prismlibrary.github.io/](https://prismlibrary.github.io/ "Visit prism library ")]
 * Unity used for DI. [[https://github.com/unitycontainer/unity](https://github.com/unitycontainer/unity "Unity Container")]
 * Material Design In XAML Toolkit [[materialdesigninxaml.net](materialdesigninxaml.net "material design in xaml")]
@@ -20,21 +23,48 @@
 * Other features: IsBuisy loader, animated popups, material design look-and-feel!
 * etc.
 
-
 ## Domain 
 
-* App can list projects, repositories and builds in specified organization in Azure DevOps.
-* You needto put OrgName and Personal token into Settings page and 
-*
+* App can do basic Azure DevOps functions, like:
+	* list Azure DevOps projects in organization,
+	* list Azure DevOps repositories,
+	* list Azure Build definitions and builds,
+	* trigger new Build.
 
+* First, you need to put Organization name and personal token into Settings page in order to have access to Azure DevOps projects.
+
+## Summary
+
+* Visual Studio 2019 is with no doubt top product, again Microsoft did some marvelous work. VS2019 is still the best Dev IDE on the market. 
+* .NET Core is on the right track! I like apporach they are doing. From code perspective I had no big problems with .NET Core 3.0 (preview) and WPF.
+* 
 
 ## How to Engage, Contribute and Provide Feedback
 
-Feel free to coment, playaround and fix issues.
-
+Feel free to comment, play around with the app and fix issues.
 
 ## Some screenshoots
 
-Feel free to coment, playaround and fix issues.
+Builds and build definition
 
-![app image](docs/readme-artifacts/app-screen.png "Exceptions")
+![app image](docs/readme-artifacts/buildsView.png "Builds")
+
+Repos
+
+![app image](docs/readme-artifacts/reposView.png "Builds")
+
+About popup with app inf from runing assembly
+
+![app image](docs/readme-artifacts/aboutView.png "About")
+
+Settings
+
+![app image](docs/readme-artifacts/settingsView.png "Settings")
+
+Exceptions
+
+![app image](docs/readme-artifacts/exceptionView.png "Exception")
+
+Menu
+
+![app image](docs/readme-artifacts/menuView.png "Menu")
