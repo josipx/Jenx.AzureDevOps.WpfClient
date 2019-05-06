@@ -1,0 +1,60 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>netcoreapp3.0</TargetFramework>
+    <UseWPF>true</UseWPF>
+    <ApplicationIcon>jenx.ico</ApplicationIcon>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo> 
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Resources\about.jpg" />
+    <None Remove="Views\SettingsView.xaml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Include="..\GlobalAssemblyInfo.cs" Link="Properties\GlobalAssemblyInfo.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MahApps.Metro" Version="1.6.5" />
+    <PackageReference Include="MaterialDesignThemes" Version="2.5.1" />
+    <PackageReference Include="MaterialDesignThemes.MahApps" Version="0.0.12" />
+    <PackageReference Include="NLog" Version="4.6.3" />
+    <PackageReference Include="NLog.Config" Version="4.6.3" />
+    <PackageReference Include="NLog.Schema" Version="4.6.3" />
+    <PackageReference Include="Prism.Unity" Version="7.2.0.1038-pre" />
+    <PackageReference Include="Prism.Wpf" Version="7.2.0.1038-pre" />
+    <PackageReference Include="System.Management" Version="4.5.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Jenx.AzureDevOps.Client\Jenx.AzureDevOps.Client.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ApplicationDefinition Update="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </ApplicationDefinition>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Logger\" />
+    <Folder Include="Styles\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Resources\about.jpg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="Styles\MaterialDesignColor.Jenx.AzureDevOps.WpfClient.xaml">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <Generator>XamlIntelliSenseFileGenerator</Generator>
+    </Page>
+  </ItemGroup>
+
+</Project>

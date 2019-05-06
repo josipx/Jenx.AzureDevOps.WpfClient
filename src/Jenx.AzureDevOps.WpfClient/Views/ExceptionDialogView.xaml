@@ -1,0 +1,80 @@
+﻿<UserControl x:Class="Jenx.AzureDevOps.WpfClient.Views.ExceptionDialogView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:wpf="clr-namespace:MaterialDesignThemes.Wpf;assembly=MaterialDesignThemes.Wpf"
+             xmlns:system="clr-namespace:System;assembly=System.Runtime"
+             mc:Ignorable="d"
+             Height="300"
+             Width="500"
+             d:DesignHeight="300"
+             d:DesignWidth="500">
+    <Grid Margin="40">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50*" />
+            <RowDefinition Height="120*" />
+            <RowDefinition Height="90*" />
+            <RowDefinition Height="50*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.4*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <TextBlock Text="{Binding Exception}"
+                   Grid.Column="1"
+                   Style="{StaticResource MaterialDesignTitleTextBlock}" />
+        <ScrollViewer Grid.Row="1"
+                      Grid.Column="1"
+                      HorizontalScrollBarVisibility="Disabled"
+                      VerticalScrollBarVisibility="Auto">
+            <TextBox Background="Transparent"
+                     BorderThickness="0"
+                     Text="{Binding ExceptionAdditional, Mode=OneWay}"
+                     IsReadOnly="True"
+                     TextWrapping="Wrap" />
+        </ScrollViewer>
+        <TextBlock Padding="7"
+                   TextWrapping="Wrap"
+                   Grid.Row="2"
+                   Grid.Column="1">
+                   Do you want to continue?
+            <LineBreak />
+                   If you click Yes you will continue with your work.
+            <LineBreak />
+                   If you click No the application will close."
+        </TextBlock>
+        <wpf:PackIcon Kind="AlertOctagon"
+                      Grid.RowSpan="4"
+                      Grid.Column="0"
+                      Grid.Row="0"
+                      Width="100"
+                      Height="100"
+                      Foreground="{StaticResource PrimaryRedForeground}"
+                      VerticalAlignment="Center"
+                      HorizontalAlignment="Center" />
+        <StackPanel Orientation="Horizontal"
+                    Grid.Column="0"
+                    Grid.Row="3"
+                    Grid.ColumnSpan="2"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center">
+            <Button IsDefault="True"
+                    Style="{DynamicResource MaterialDesignFlatButton}"
+                    Command="{x:Static wpf:DialogHost.CloseDialogCommand}">
+                <Button.CommandParameter>
+                    <system:Boolean>True</system:Boolean>
+                </Button.CommandParameter>
+                Yes
+            </Button>
+            <Button IsCancel="True"
+                    Style="{DynamicResource MaterialDesignFlatButton}"
+                    Command="{x:Static wpf:DialogHost.CloseDialogCommand}">
+                <Button.CommandParameter>
+                    <system:Boolean>False</system:Boolean>
+                </Button.CommandParameter>
+                No
+            </Button>
+        </StackPanel>
+    </Grid>
+</UserControl>

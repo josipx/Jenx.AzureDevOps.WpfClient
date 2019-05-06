@@ -1,0 +1,108 @@
+﻿<UserControl x:Class="Jenx.AzureDevOps.WpfClient.Views.AboutDialogView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:mvvm="http://prismlibrary.com/"
+             mvvm:ViewModelLocator.AutoWireViewModel="True"
+             mc:Ignorable="d"
+             Height="500"
+             Width="700"
+             d:DesignHeight="500"
+             d:DesignWidth="700">
+    <UserControl.Background>
+        <ImageBrush ImageSource="/Resources/about.jpg" />
+    </UserControl.Background>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="20" />
+            <ColumnDefinition Width="0.7*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="80" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="80" />
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Vertical"
+                    Grid.Row="1"
+                    Grid.Column="1">
+            <Label Content="Product info:"
+                   Foreground="{DynamicResource WhiteBrush}"
+                   HorizontalAlignment="Left"
+                   VerticalAlignment="Center" />
+            <Label Margin="30,0,0,0"
+                   Foreground="{DynamicResource WhiteBrush}"
+                   Content="{Binding ProductInfo}"
+                   HorizontalAlignment="Left"
+                   VerticalAlignment="Center" />
+        </StackPanel>
+        <StackPanel Orientation="Vertical"
+                    Grid.Row="2"
+                    Grid.Column="1">
+            <Label Content="Product version:"
+                   Foreground="{DynamicResource WhiteBrush}"
+                   HorizontalAlignment="Left"
+                   VerticalAlignment="Center" />
+            <Label Margin="30,0,0,0"
+                   Foreground="{DynamicResource WhiteBrush}"
+                   Content="{Binding ProductVersion}"
+                   HorizontalAlignment="Left"
+                   VerticalAlignment="Center" />
+        </StackPanel>
+        <StackPanel Orientation="Vertical"
+                    Grid.Row="3"
+                    Grid.Column="1">
+            <Label Content="Product Company:"
+                   Foreground="{DynamicResource WhiteBrush}"
+                   HorizontalAlignment="Left"
+                   VerticalAlignment="Center" />
+            <Label Margin="30,0,0,0"
+                   Foreground="{DynamicResource WhiteBrush}"
+                   Content="{Binding ProductCompany }"
+                   HorizontalAlignment="Left"
+                   VerticalAlignment="Center" />
+        </StackPanel>
+        <StackPanel Orientation="Vertical"
+                    Grid.Row="4"
+                    Grid.RowSpan="2"
+                    Grid.Column="1">
+            <Label Content="Reseller Support Information:"
+                   Foreground="{DynamicResource WhiteBrush}"
+                   HorizontalAlignment="Left"
+                   VerticalAlignment="Center" />
+            <Label Margin="30,0,0,0"
+                   Foreground="{DynamicResource WhiteBrush}"
+                   HorizontalAlignment="Left"
+                   VerticalAlignment="Center">
+                <TextBlock>Contact us
+                    <LineBreak />
+                    +12 (3) 444444-444
+                    <LineBreak />
+                    <Hyperlink Foreground="{DynamicResource WhiteBrush}"
+                               NavigateUri="https://www.jenx.si"
+                               Command="{Binding NavigateToUrlCommand}"
+                               CommandParameter="https://www.jenx.si">
+                               https://www.jenx.si
+                    </Hyperlink>
+                </TextBlock>
+            </Label>
+        </StackPanel>
+        <Button Grid.Row="5"
+                Grid.Column="0"
+                Grid.ColumnSpan="3"
+                IsDefault="True"
+                Style="{DynamicResource MaterialDesignFlatButton}"
+                HorizontalAlignment="Stretch"
+                VerticalAlignment="Stretch"
+                Content="Close"
+                Width="100"
+                Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}">
+        </Button>
+    </Grid>
+</UserControl>
