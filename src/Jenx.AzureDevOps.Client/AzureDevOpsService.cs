@@ -104,7 +104,7 @@ namespace Jenx.AzureDevOps.Client
 
         public async Task<BuildTriggeredResult> TriggerProjectBuildAsync(string projectName, int definitionId)
         {
-            var AzureDevOpsBuildTrigger = new BuildTriggeredResult();
+            var azureDevOpsBuildTrigger = new BuildTriggeredResult();
 
             try
             {
@@ -121,7 +121,7 @@ namespace Jenx.AzureDevOps.Client
                     {
                         response.EnsureSuccessStatusCode();
                         var responseBody = await response.Content.ReadAsStringAsync();
-                        AzureDevOpsBuildTrigger = JsonConvert.DeserializeObject<BuildTriggeredResult>(responseBody);
+                        azureDevOpsBuildTrigger = JsonConvert.DeserializeObject<BuildTriggeredResult>(responseBody);
                     }
                 }
             }
@@ -130,7 +130,7 @@ namespace Jenx.AzureDevOps.Client
                 Debug.WriteLine(ex.ToString());
             }
 
-            return AzureDevOpsBuildTrigger;
+            return azureDevOpsBuildTrigger;
         }
 
         public async Task<AzureDevOpsBuildDefinitions> GetProjectBuildDefinitionsAsync(string projectName)
