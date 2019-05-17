@@ -20,7 +20,7 @@ namespace Jenx.AzureDevOps.Client
 
         public async Task<AzureDevOpsProjects> GetProjectsAsync()
         {
-            var AzureDevOpsProjects = new AzureDevOpsProjects();
+            var azureDevOpsProjects = new AzureDevOpsProjects();
 
             try
             {
@@ -30,11 +30,11 @@ namespace Jenx.AzureDevOps.Client
                     client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic",
                         Convert.ToBase64String(Encoding.ASCII.GetBytes($":{_settings.PersonalAccessToken}")));
 
-                    using (HttpResponseMessage response = await client.GetAsync($"https://dev.azure.com/{_settings.OrganizationName}/_apis/projects"))
+                    using (var response = await client.GetAsync($"https://dev.azure.com/{_settings.OrganizationName}/_apis/projects"))
                     {
                         response.EnsureSuccessStatusCode();
-                        string responseBody = await response.Content.ReadAsStringAsync();
-                        AzureDevOpsProjects = JsonConvert.DeserializeObject<AzureDevOpsProjects>(responseBody);
+                        var responseBody = await response.Content.ReadAsStringAsync();
+                        azureDevOpsProjects = JsonConvert.DeserializeObject<AzureDevOpsProjects>(responseBody);
                     }
                 }
             }
@@ -43,12 +43,12 @@ namespace Jenx.AzureDevOps.Client
                 Debug.WriteLine(ex.ToString());
             }
 
-            return AzureDevOpsProjects;
+            return azureDevOpsProjects;
         }
 
         public async Task<AzureDevOpsRepos> GetReposAsync(string projectName)
         {
-            var AzureDevOpsRepos = new AzureDevOpsRepos();
+            var azureDevOpsRepos = new AzureDevOpsRepos();
 
             try
             {
@@ -58,11 +58,11 @@ namespace Jenx.AzureDevOps.Client
                     client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic",
                         Convert.ToBase64String(Encoding.ASCII.GetBytes($":{_settings.PersonalAccessToken}")));
 
-                    using (HttpResponseMessage response = await client.GetAsync($"https://dev.azure.com/{_settings.OrganizationName}/{projectName}/_apis/git/repositories"))
+                    using (var response = await client.GetAsync($"https://dev.azure.com/{_settings.OrganizationName}/{projectName}/_apis/git/repositories"))
                     {
                         response.EnsureSuccessStatusCode();
-                        string responseBody = await response.Content.ReadAsStringAsync();
-                        AzureDevOpsRepos = JsonConvert.DeserializeObject<AzureDevOpsRepos>(responseBody);
+                        var responseBody = await response.Content.ReadAsStringAsync();
+                        azureDevOpsRepos = JsonConvert.DeserializeObject<AzureDevOpsRepos>(responseBody);
                     }
                 }
             }
@@ -71,12 +71,12 @@ namespace Jenx.AzureDevOps.Client
                 Debug.WriteLine(ex.ToString());
             }
 
-            return AzureDevOpsRepos;
+            return azureDevOpsRepos;
         }
 
         public async Task<AzureDevOpsBuilds> GetProjectBuildsAsync(string projectName)
         {
-            var AzureDevOpsBuilds = new AzureDevOpsBuilds();
+            var azureDevOpsBuilds = new AzureDevOpsBuilds();
 
             try
             {
@@ -86,11 +86,11 @@ namespace Jenx.AzureDevOps.Client
                     client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic",
                         Convert.ToBase64String(Encoding.ASCII.GetBytes($":{_settings.PersonalAccessToken}")));
 
-                    using (HttpResponseMessage response = await client.GetAsync($"https://dev.azure.com/{_settings.OrganizationName}/{projectName}/_apis/build/builds"))
+                    using (var response = await client.GetAsync($"https://dev.azure.com/{_settings.OrganizationName}/{projectName}/_apis/build/builds"))
                     {
                         response.EnsureSuccessStatusCode();
-                        string responseBody = await response.Content.ReadAsStringAsync();
-                        AzureDevOpsBuilds = JsonConvert.DeserializeObject<AzureDevOpsBuilds>(responseBody);
+                        var responseBody = await response.Content.ReadAsStringAsync();
+                        azureDevOpsBuilds = JsonConvert.DeserializeObject<AzureDevOpsBuilds>(responseBody);
                     }
                 }
             }
@@ -99,7 +99,7 @@ namespace Jenx.AzureDevOps.Client
                 Debug.WriteLine(ex.ToString());
             }
 
-            return AzureDevOpsBuilds;
+            return azureDevOpsBuilds;
         }
 
         public async Task<BuildTriggeredResult> TriggerProjectBuildAsync(string projectName, int definitionId)
@@ -117,10 +117,10 @@ namespace Jenx.AzureDevOps.Client
                     var json = "{\"definition\": {\"id\": " + definitionId + "}}";
                     var stringContent = new StringContent(json, Encoding.UTF8, "application/json");
 
-                    using (HttpResponseMessage response = await client.PostAsync($"https://dev.azure.com/{_settings.OrganizationName}/{projectName}/_apis/build/builds?api-version=5.0", stringContent))
+                    using (var response = await client.PostAsync($"https://dev.azure.com/{_settings.OrganizationName}/{projectName}/_apis/build/builds?api-version=5.0", stringContent))
                     {
                         response.EnsureSuccessStatusCode();
-                        string responseBody = await response.Content.ReadAsStringAsync();
+                        var responseBody = await response.Content.ReadAsStringAsync();
                         AzureDevOpsBuildTrigger = JsonConvert.DeserializeObject<BuildTriggeredResult>(responseBody);
                     }
                 }
@@ -135,7 +135,7 @@ namespace Jenx.AzureDevOps.Client
 
         public async Task<AzureDevOpsBuildDefinitions> GetProjectBuildDefinitionsAsync(string projectName)
         {
-            var AzureDevOpsBuildDefinitions = new AzureDevOpsBuildDefinitions();
+            var azureDevOpsBuildDefinitions = new AzureDevOpsBuildDefinitions();
 
             try
             {
@@ -145,11 +145,11 @@ namespace Jenx.AzureDevOps.Client
                     client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic",
                         Convert.ToBase64String(Encoding.ASCII.GetBytes($":{_settings.PersonalAccessToken}")));
 
-                    using (HttpResponseMessage response = await client.GetAsync($"https://dev.azure.com/{_settings.OrganizationName}/{projectName}/_apis/build/definitions"))
+                    using (var response = await client.GetAsync($"https://dev.azure.com/{_settings.OrganizationName}/{projectName}/_apis/build/definitions"))
                     {
                         response.EnsureSuccessStatusCode();
-                        string responseBody = await response.Content.ReadAsStringAsync();
-                        AzureDevOpsBuildDefinitions = JsonConvert.DeserializeObject<AzureDevOpsBuildDefinitions>(responseBody);
+                        var responseBody = await response.Content.ReadAsStringAsync();
+                        azureDevOpsBuildDefinitions = JsonConvert.DeserializeObject<AzureDevOpsBuildDefinitions>(responseBody);
                     }
                 }
             }
@@ -158,7 +158,7 @@ namespace Jenx.AzureDevOps.Client
                 Debug.WriteLine(ex.ToString());
             }
 
-            return AzureDevOpsBuildDefinitions;
+            return azureDevOpsBuildDefinitions;
         }
     }
 }
